@@ -20,6 +20,7 @@ jobs:
       - checkout
       - run: echo "Hello CircleCI!"
       - run: echo "2rd hello CircleCi"
+      - run: pwd
     # END erod custom
 
 #    working_directory: ~/repo
