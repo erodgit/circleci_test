@@ -19,8 +19,10 @@ jobs:
     steps:
       - checkout
       - run: echo "Hello CircleCI!"
-      - run: echo "2rd hello CircleCi"
-      - run: pwd
+      - run: |
+          echo "running multi command"
+          pwd
+          ls
     # END erod custom
 
 #    working_directory: ~/repo
