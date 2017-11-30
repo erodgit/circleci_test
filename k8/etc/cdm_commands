@@ -1,0 +1,106 @@
+# CDM functions for bash
+#####
+# CDM functions to set and use pathname
+# for example inside the directory /home/user1/docs
+# if you run "m 1", the variable m1 will be set to the path /home/home/user1/docs
+# then using cdm 1, will go to the path value stored in m1
+#
+# Usage
+# m <name> => store the current pwd into m<name> (CDM value)
+# cdm m<name> => change directory to $m<name> (CDM value)
+# cdh => list all CDM values
+# scdm => save all CDM values
+# lcdm => load and replace CDM values previously saved
+# razcdm => unset the CDM values
+#####
+# V01.01
+# 2016-11-30: adding a CDM directory to save cdm files. 
+#             Before the CDM directory was ~
+#####
+
+_cdm_dir=~/Documents/configuration/CDM
+
+# Check for the CDM directory
+check_cdm_dir(){
+    if [ ! -d $_cdm_dir ]; then
+        echo "Mkdir $_cdm_dir"
+        mkdir -p $_cdm_dir
+    fi
+}
+
+# Add the path to the m variable
+add_cdm(){
+    _arg=$1
+    _variable=m$_arg
+    _mypath=`pwd`
+
+    # Set the m variable with the path value
+    # We need \" to keep the space character(s) in the variable during the eval
+    eval $_variable="\"$_mypath\""
+    echo $_variable = ${!_variable}
+}
+
+# Change directory to the m variable
+go_cdm(){
+    _arg=$1
+    _variable=m$_arg
+
+    cd "${!_variable}"
+}
+
+# List all the cdm values
+list_cdm(){
+    echo CDM values:
+    echo ===========
+    set | grep "^m"
+}
+
+# Save all the cdm values
+save_cdm(){
+    _arg=$1
+    _default_file=cdm_save
+    # Use default value if not defined
+    _savefile=$_cdm_dir/${_arg:-$_default_file}
+
+    # Make sure the directories are created before saving the configuration
+    check_cdm_dir
+
+    echo Saving CDM values in $_savefile
+    echo "# List of CDM values saved" > $_savefile
+    set | grep "^m" >> $_savefile
+    echo Done
+}
+
+# Load all the cdm values
+load_cdm(){
+    _arg=$1
+    _default_file=cdm_save
+    # Use default value if not defined
+    _savefile=$_cdm_dir/${_arg:-$_default_file}
+
+    if [ -f $_savefile ]; then
+        echo "Loading CDM values from $_savefile"
+        source $_savefile
+        list_cdm
+    else
+        echo "Cannot load CDM, file not found: $_savefile"
+    fi
+}
+
+# Reset all the cdm values
+reset_cdm(){
+    for i in $( set | grep "^m" | sed 's/=.*//' )
+    do
+        echo unset $i
+        unset $i
+    done
+}
+    
+
+# Shortcut/alias to call the functions
+alias m=add_cdm
+alias cdm=go_cdm
+alias cdh=list_cdm
+alias scdm=save_cdm
+alias lcdm=load_cdm
+alias razcdm=reset_cdm

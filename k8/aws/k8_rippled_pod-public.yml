@@ -1,0 +1,21 @@
+apiVersion: v1 
+kind: Pod 
+metadata:
+    name: rippled
+    labels: 
+        zone: prod 
+        version: v1 
+        app: rippled-app
+        name: dns-rippled
+spec: 
+    hostname: rippled-01
+    containers: 
+      - name: rippled
+        image: inzbox/test
+        #imagePullPolicy: Never
+        ports: 
+          - containerPort: 5006
+        command: [ "/bin/bash", "./config_and_run_rippled" ]
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
+

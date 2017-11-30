@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata: 
+    name: rippled-svc1
+    labels:
+        app: rippled-svc
+spec:
+    type: NodePort
+    ports:
+    - port: 5006
+      nodePort: 30006
+      protocol: TCP
+    selector:
+      app: rippled-app
