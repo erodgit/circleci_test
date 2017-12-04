@@ -23,6 +23,10 @@ jobs:
           echo "running multi command"
           pwd
           ls
+      - setup_remote_docker
+      - run: |
+          docker build -t ngixcontent .
+          docker image ls
     # END erod custom
 
 #    working_directory: ~/repo
