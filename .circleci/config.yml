@@ -26,6 +26,9 @@ jobs:
           echo "User information:"
           id
           echo ~
+      - run: |
+          python3 --version
+          pip3 --version
       - setup_remote_docker:
           version: 17.05.0-ce
       - run: |
