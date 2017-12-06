@@ -23,6 +23,8 @@ jobs:
           echo "running multi command"
           pwd
           ls
+          echo "User information:"
+          id
       - setup_remote_docker:
           version: 17.05.0-ce
       - run: |
@@ -30,6 +32,10 @@ jobs:
           docker image ls
           docker login -u $DOCKERUSER -p $DOCKERPASSWORD
           docker push inzbox/circleci_nginx
+      # Setup kubectl
+      - run: |
+          wget -q https://storage.googleapis.com/kubernetes-release/release/v1.6.1/bin/linux/amd64/kubectl
+          ls
     # END erod custom
 
 #    working_directory: ~/repo
