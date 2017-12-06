@@ -29,8 +29,8 @@ jobs:
       - run: |
           python3 --version
           pip3 --version
-          pip3 install robotframework
-          pip3 install requests
+          sudo pip3 install robotframework
+          sudo pip3 install requests
       - setup_remote_docker:
           version: 17.05.0-ce
       - run: |
