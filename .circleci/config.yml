@@ -43,7 +43,7 @@ jobs:
           wget -q https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl
           chmod 755 kubectl
           ls -l
-          kubectl version --short=true --client
+          ./kubectl version --short=true --client
       - run: |
           cd py_tests/tests
           robot tests.robot
