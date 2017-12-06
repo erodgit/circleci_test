@@ -34,8 +34,9 @@ jobs:
           docker push inzbox/circleci_nginx
       # Setup kubectl
       - run: |
-          wget -q https://storage.googleapis.com/kubernetes-release/release/v1.6.1/bin/linux/amd64/kubectl
+          wget -q https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl
           ls
+          ./kubectl version
     # END erod custom
 
 #    working_directory: ~/repo
