@@ -25,6 +25,7 @@ jobs:
           ls
           echo "User information:"
           id
+          echo ~
       - setup_remote_docker:
           version: 17.05.0-ce
       - run: |
