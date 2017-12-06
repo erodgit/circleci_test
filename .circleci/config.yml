@@ -23,10 +23,12 @@ jobs:
           echo "running multi command"
           pwd
           ls
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 17.05.0-ce
       - run: |
-          docker build -t ngixcontent .
+          docker build -t inzbox/circleci_nginx .
           docker image ls
+          docker push inzbox/circleci_nginx
     # END erod custom
 
 #    working_directory: ~/repo
