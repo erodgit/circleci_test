@@ -28,6 +28,7 @@ jobs:
       - run: |
           docker build -t inzbox/circleci_nginx .
           docker image ls
+          docker login -u $DOCKERUSER -p $DOCKERPASSWORD
           docker push inzbox/circleci_nginx
     # END erod custom
 
