@@ -47,6 +47,10 @@ jobs:
       - run: |
           cd py_tests/tests
           robot tests.robot
+      - run: |
+          wget http://18.216.216.236:30008
+          ls -l
+          cat index.html
     # END erod custom
 
 #    working_directory: ~/repo

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-image_name="rippled"
+image_name="inzbox/nginx"
 container_name=$image_name
 
 # Setup the environment for the minikube
-docker build -t polysignorg/rippled ../..
+docker build -t $container_name ../..
 
 # Push image to repository
-docker push polysignorg/rippled
+docker push $container_name

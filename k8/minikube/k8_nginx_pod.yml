@@ -1,16 +1,16 @@
 apiVersion: v1 
 kind: Pod 
 metadata:
-    name: ngixpod
+    name: nginxpod
     labels: 
         zone: prod 
         version: v1 
-        app: ngix-app
-        name: dns-ngix
+        app: nginx-app
+        name: dns-nginx
 spec: 
-    hostname: ngix-01
+    hostname: nginx-01
     containers: 
-      - name: ngixcontent
+      - name: nginxcontent
         image: ngixcontent
         imagePullPolicy: Never
         ports: 

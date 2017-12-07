@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata: 
-    name: rippled-svc1
+    name: nginx-svc1
     labels:
-        app: rippled-svc
+        app: nginx-svc
 spec:
     type: NodePort
     ports:
-    - port: 5006
-      nodePort: 30006
+    - port: 80
+      nodePort: 30008
       protocol: TCP
     selector:
-      app: rippled-app
+      app: nginx-app
