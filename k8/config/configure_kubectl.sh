@@ -30,5 +30,8 @@ fi
   --cluster=circleci.cluster \
   --user=testci
 
+# Use the context
+./kubectl config use-context circleci.context
+
 # View the config
 ./kubectl config view
