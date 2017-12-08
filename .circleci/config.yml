@@ -40,13 +40,16 @@ jobs:
           docker push inzbox/circleci_nginx
       # Setup kubectl
       - run: |
-          wget -q https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl
-          chmod 755 kubectl
+          #wget -q https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl
+          #chmod 755 kubectl
+          cd k8/config
           ls -l
           ./kubectl version --short=true --client
-      - run: |
-          cd py_tests/tests
-          robot tests.robot
+          ./configure_kubectl.sh
+          ./kubectl get pod
+      #- run: |
+      #    cd py_tests/tests
+      #    robot tests.robot
       - run: |
           wget http://18.216.216.236:30008
           ls -l

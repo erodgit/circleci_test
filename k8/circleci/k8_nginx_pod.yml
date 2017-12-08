@@ -1,0 +1,22 @@
+apiVersion: v1 
+kind: Pod 
+metadata:
+    name: nginxpod
+    labels: 
+        zone: prod 
+        version: v1 
+        app: nginx-app
+        name: dns-nginx
+spec: 
+    hostname: nginx-01
+    containers: 
+      - name: nginxcontent
+        image: inzbox/circleci_nginx
+        #imagePullPolicy: Never
+        ports: 
+          - containerPort: 80
+        # Nginx container starts nginx daemon, no need to specify an entrypoint
+        #command: [ "/bin/bash", "-c", "--" ]
+        #args: [ "while true; do sleep 30; done;" ]
+    imagePullSecrets:
+    - name: regsecret
