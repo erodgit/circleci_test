@@ -52,6 +52,7 @@ jobs:
           ../config/kubectl config view
           ../config/kubectl apply -f k8_nginx_pod.yml
           ../config/kubectl apply -f k8_nginx_service.yml
+          sleep 60
       #- run: |
       #    cd py_tests/tests
       #    robot tests.robot
