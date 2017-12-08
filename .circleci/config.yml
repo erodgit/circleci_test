@@ -48,7 +48,10 @@ jobs:
           ./configure_kubectl.sh
           ./kubectl get pod
       - run: |
-          pwd
+          cd k8/circleci
+          ../config/kubectl config view
+          ../config/kubectl apply -f k8_nginx_pod.yml
+          ../config/kubectl apply -f k8_nginx_service.yml
       #- run: |
       #    cd py_tests/tests
       #    robot tests.robot
