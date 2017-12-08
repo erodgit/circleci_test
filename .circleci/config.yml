@@ -47,6 +47,8 @@ jobs:
           ./kubectl version --short=true --client
           ./configure_kubectl.sh
           ./kubectl get pod
+      - run: |
+          pwd
       #- run: |
       #    cd py_tests/tests
       #    robot tests.robot
