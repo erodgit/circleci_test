@@ -21,8 +21,7 @@ fi
 
 # Create user entry
 # Use global environment to pass the data (this is for CircleCI)
-./kubectl config set-credentials \
-  --username=testci \
+./kubectl config set-credentials testci \
   --password=$K8USERPASSWORD \
   --username=admin
 
